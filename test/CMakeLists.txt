@@ -755,6 +755,8 @@ if (NOT (WASI STREQUAL "p1"))
   add_wasilibc_test(getaddrinfo.c NETWORK)
   add_wasilibc_test(getaddrinfo-flags.c NETWORK)
   add_wasilibc_test(getaddrinfo-numeric.c)
+  add_wasilibc_test(getnameinfo-numeric.c CFLAGS -UNDEBUG
+    LDFLAGS -Wl,--wrap=inet_ntop)
   add_wasilibc_test(sockets-getpeername-reset.c NETWORK)
   add_wasilibc_test(sockets-nonblocking.c NETWORK)
   add_wasilibc_test(sockets-nonblocking-udp-no-connection.c NETWORK)
