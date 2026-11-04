@@ -31,7 +31,7 @@ runs:
           exit 1
         fi
         tag=$(echo ${{ inputs.clang_version }} | sed 's/\.0//')
-        curl -sSfL https://github.com/WebAssembly/wasi-sdk/releases/download/$tag/${{ inputs.clang_version }}-$plat.tar.gz | tar xzf -
+        curl --connect-timeout 10 --max-time 180 -sSfL https://github.com/WebAssembly/wasi-sdk/releases/download/$tag/${{ inputs.clang_version }}-$plat.tar.gz | tar xzf -
         CLANG_DIR=`pwd`/${{ inputs.clang_version }}-$plat/bin
         echo "$CLANG_DIR" >> $GITHUB_PATH
         echo "CC=$CLANG_DIR/clang" >> $GITHUB_ENV
